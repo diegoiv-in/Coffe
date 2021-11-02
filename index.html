@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header >
+        <h1 id="titulo">Cafetería Cubic World</h1>
+    </header>
+    <div class="container text-center" id="contadores" style="font-size: 20px;">
+        <section id="seccion_cafe">
+            <article id="article_bebidas">
+                    
+                    <h3>Menú de Bebidas</h3>
+                    <div class="row">
+                        <div class="container-fluid">
+                            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" type="search" v-model="busqueda_x_nomb" placeholder="Buscar Bebida por Nombre" style="width: 280px;" @click="show=!show">
+                            <ul class="list-unstyled text-center">
+                                <li  >
+                                    <transition name="bounce">
+                                        <p v-if="show"><img src="img/100.jpg"></p>
+                                    </transition>
+                                    <table class="table table-striped ">
+                                        <tr style="border: 2px solid rgb(201, 118, 118);">
+                                            <th>Vigencia</th>
+                                            <th>Bebida</th>
+                                            <th>Ingredientes</th>
+                                            <th>Tamaño</th>
+                                            <th>precio</th>
+                                            
+                                        </tr>
+                                        <tr style="border: 2px solid rgb(201, 118, 118);" v-for="item in articulos" v-for="item in buscarBebida"   v-for="item in preciosBebidas"> 
+                                            <td  v-text="item.vig"> </td>
+                                            <td v-text="item.bebida"></td>
+                                            <td v-text="item.ing"></td>
+                                            <td v-text="item.tam"></td>
+                                            <td v-text="item.precio" ></td>
+                                        </tr>
+                                           
+                                            
+                                            
+                                        
+                                    </table>
+                                   
+                            </li>
+                            </ul>
+                           
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="container-fluid">
+                            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" type="search" v-model="busqueda_x_prec" placeholder="Buscar Bebida por Precio" style="width: 250px;" @click="show2=!show2">
+                            <transition name="slide-fade">
+                                <p v-if="show2">
+                                <img src="img/bar.jpg" style="width: 30%;">
+                                </p>
+                            </transition>
+                            <table class="table table-striped">
+                                <tr style="border: 2px solid rgb(201, 118, 118);">
+                                    <th>Vigencia</th>
+                                    <th>Bebida</th>
+                                    <th>Ingredientes</th>
+                                    <th>Tamaño</th>
+                                    <th>precio</th>
+                                    
+                                </tr>
+                                <tr v-for="item in articulos" v-for="item in buscarBebida"   v-for="item in preciosBebidas" style="border: 2px solid rgb(201, 118, 118);"> 
+                                    <td  v-text="item.vig"> </td>
+                                    <td v-text="item.bebida"></td>
+                                    <td v-text="item.ing"></td>
+                                    <td v-text="item.tam"></td>
+                                    <td v-text="item.precio" ></td>
+                                </tr>
+                                   
+                                    
+                                    
+                                
+                            </table>
+                            <ul class="list-unstyled text-center">
+
+                               
+                            </ul>
+                            
+                        </div>
+                    </div>
+            </article>
+            <article id="article_pedido">
+               
+                <table class="table table-striped">
+                    <tr style="border: 2px solid rgb(201, 118, 118);">
+                        <th>Cantidad</th>
+                        <th>Bebida</th>
+                        <th>Precio</th>
+                        <th>Costo Total/Articulo</th>
+                    </tr>
+                    <tr v-for="item in articulos" style="border: 2px solid rgb(201, 118, 118);">
+                        <td><input type="number" v-model="item.cant"></td>
+                        <td><input type="text" v-model="item.nombre"></td>
+                        <td>$<input type="number" v-model="item.precio_unit" disabled></td>
+                        <td>${{calculoPrecioItems(item)}}</td>
+                        <td></td>
+                    </tr>
+                    <h3></h3>
+                </table>
+               
+            </article>
+        </section>
+    </div>
+<script src="js/vj.js"></script>
+</body>
+</html>
